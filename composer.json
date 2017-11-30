@@ -1,0 +1,21 @@
+{
+    "name": "tecsvit/logger",
+    "description": "Logger",
+    "type": "library",
+    "keywords": ["library","log"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "fa2m",
+            "email": "2day@ua.fm"
+        }
+    ],
+    "require": {
+        "tecsvit/file-helper": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "\\tecsvit\\": ""
+        }
+    }
+}
