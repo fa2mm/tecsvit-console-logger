@@ -4,9 +4,11 @@ namespace \tecsvit;
 
 /**
  * Class Logger
+ *
  * @static integer  $levelError
  * @static string   $filePath
  * @static boolean  $verbose
+ * @static boolean  $defaultFilePath
  *
  * @use \tecsvit\FileHelper
  */
