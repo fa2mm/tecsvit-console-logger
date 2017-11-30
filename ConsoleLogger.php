@@ -169,7 +169,7 @@ class ConsoleLogger
         $fileHelper->createFile($filePath);
 
         if (FileHelper::$errorInstance->hasErrors()) {
-            self::log(FileHelper::$errorInstance->getFirst);
+            self::log(FileHelper::errorInstance()->getFirstError());
         }
     }
 
