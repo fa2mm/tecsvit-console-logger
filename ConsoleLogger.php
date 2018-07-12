@@ -1,6 +1,6 @@
 <?php
 
-namespace \tecsvit;
+namespace tecsvit;
 
 /**
  * Class Logger
@@ -33,7 +33,7 @@ class ConsoleLogger
      * @param string $method
      * @param array  $arguments
      * @return mixed
-     * @throws Exception
+     * @throws \Exception
      */
     public static function __callStatic($method, $arguments)
     {
@@ -41,7 +41,7 @@ class ConsoleLogger
             if (method_exists(__CLASS__, $method)) {
                 return call_user_func_array([__CLASS__, $method], $arguments);
             } else {
-                throw new Exception('Method not found');
+                throw new \Exception('Method not found');
             }
         }
     }
