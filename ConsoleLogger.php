@@ -3,9 +3,9 @@
 namespace tecsvit;
 
 /**
- * Class Logger
- * Date: 2018-03-14
- * @version 1.1
+ * Class ConsoleLogger
+ * Date: 2018-07-15
+ * @version 1.2
  *
  * @static integer  $levelError
  * @static string   $filePath
@@ -89,8 +89,29 @@ class ConsoleLogger
         if (true === $return) {
             return $data . PHP_EOL;
         } else {
-            self::decoratorAll($data, $type, $prefix);
-            self::decorator($suffix, $type, true);
+            $result = self::decoratorAll($data, $type, $prefix);
+            $result .= self::decorator($suffix, $type, true);
+            echo $result;
+        }
+    }
+
+    /**
+     * @param mixed  $data
+     * @param bool   $return
+     * @param int    $type
+     * @param string $prefix
+     * @param string $suffix
+     * @return string
+     */
+    private static function debugLog($data, $return = false, $type = self::LOG, $prefix = '', $suffix = '')
+    {
+        $result = self::decoratorAll($data, $type, $prefix);
+        $result .= self::decorator($suffix, $type, true);
+
+        if (true === $return) {
+            return $result;
+        } else {
+            echo $result;
         }
     }
 
@@ -103,9 +124,9 @@ class ConsoleLogger
      */
     private static function rlog($data, $type = self::LOG, $prefix = '', $suffix = '')
     {
-        self::decorator("\r\r", $type);
-        self::decoratorAll($data, $type, $prefix);
-        self::decorator($suffix, $type, false);
+        echo self::decorator("\r\r", $type);
+        echo self::decoratorAll($data, $type, $prefix);
+        echo self::decorator($suffix, $type, false);
     }
 
     /**
@@ -116,14 +137,17 @@ class ConsoleLogger
      */
     private static function decoratorAll($data, $type, $prefix)
     {
-        self::decorator($prefix, $type);
+        $result = self::decorator($prefix, $type);
 
         if (is_object($data) | is_array($data)) {
-            self::decorator(var_export($data), $type);
+            $result .= self::decorator(var_export($data), $type);
         } else {
-            self::decorator($data, $type);
+            $result .= self::decorator($data, $type);
         }
+
+        return $result;
     }
+
     /**
      * @param string $content
      * @param string $type
@@ -132,25 +156,28 @@ class ConsoleLogger
      */
     private static function decorator($content, $type = null, $last = false)
     {
+        $result = '';
         if ('' !== $content) {
             if ($type == self::ERROR) {
-                echo "\033[31m";
+                $result = "\033[31m";
             } elseif ($type == self::WARNING) {
-                echo "\033[33m";
+                $result = "\033[33m";
             } elseif ($type == self::LOG) {
-                echo "\033[32m";
+                $result = "\033[32m";
             }
 
-            echo $content;
+            $result .= $content;
 
             if ($type !== self::SIMPLE) {
-                echo "\033[0m";
+                $result .= "\033[0m";
             }
         }
 
         if (true === $last) {
-            echo PHP_EOL;
+            $result .= PHP_EOL;
         }
+
+        return $result;
     }
 
     /**
