@@ -9,7 +9,7 @@ namespace tecsvit;
  *
  * @static integer  $levelError
  * @static string   $filePath
- * @static boolean  $verbose
+ * @static boolean  $verboseK
  * @static boolean  $defaultFilePath
  *
  * @use \tecsvit\FileHelper
@@ -133,7 +133,7 @@ class ConsoleLogger
      * @param mixed     $data
      * @param int       $type
      * @param string    $prefix
-     * @return void
+     * @return string
      */
     private static function decoratorAll($data, $type, $prefix)
     {
@@ -152,7 +152,7 @@ class ConsoleLogger
      * @param string $content
      * @param string $type
      * @param bool   $last
-     * @return void
+     * @return string
      */
     private static function decorator($content, $type = null, $last = false)
     {
