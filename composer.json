@@ -1,5 +1,6 @@
 {
     "name": "tecsvit/logger",
+    "version": "1.2.1",
     "description": "Logger",
     "type": "library",
     "keywords": ["library","log"],

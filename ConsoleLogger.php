@@ -5,7 +5,7 @@ namespace tecsvit;
 /**
  * Class ConsoleLogger
  * Date: 2018-07-15
- * @version 1.2
+ * @version 1.2.1
  *
  * @static integer  $levelError
  * @static string   $filePath
@@ -220,7 +220,7 @@ class ConsoleLogger
         $fileHelper = new FileHelper();
         $fileHelper->createFile($filePath);
 
-        if (FileHelper::$errorInstance->hasErrors()) {
+        if (FileHelper::errorInstance()->hasErrors()) {
             self::log(FileHelper::errorInstance()->getFirstError());
         }
     }
